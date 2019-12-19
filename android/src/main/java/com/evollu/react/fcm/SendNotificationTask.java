@@ -1,8 +1,6 @@
 package com.evollu.react.fcm;
 
 import android.app.Notification;
-import android.app.NotificationChannel;
-import android.app.NotificationChannelGroup;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.ContentResolver;
@@ -15,26 +13,22 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
-import android.media.AudioAttributes;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.PowerManager;
-import android.support.annotation.NonNull;
-import android.support.v4.app.NotificationCompat;
-import android.support.v4.app.NotificationManagerCompat;
-import android.support.v4.content.LocalBroadcastManager;
+import androidx.annotation.NonNull;
+import androidx.core.app.NotificationCompat;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import android.util.Log;
 
 import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.WritableArray;
 import com.facebook.react.modules.storage.AsyncLocalStorageUtil;
@@ -53,7 +47,6 @@ import java.net.URLDecoder;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Optional;
 
 import static com.facebook.react.common.ReactConstants.TAG;
 
@@ -255,13 +248,13 @@ public class SendNotificationTask extends AsyncTask<Void, Void, Void> {
                     int soundResourceId = res.getIdentifier(soundName, "raw", packageName);
 
                     if (soundResourceId == 0) {
-                            soundName = soundName.substring(0, soundName.lastIndexOf('.'));
-                            soundResourceId = res.getIdentifier(soundName, "raw", packageName);
+                        soundName = soundName.substring(0, soundName.lastIndexOf('.'));
+                        soundResourceId = res.getIdentifier(soundName, "raw", packageName);
                     }
 
                     soundUri = Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://" + packageName + "/" + soundResourceId);
                 }
-            } 
+            }
             catch ( Exception e ){
 
             }
