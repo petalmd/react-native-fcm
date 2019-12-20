@@ -23,12 +23,11 @@ import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.messaging.RemoteMessage;
 import com.google.firebase.messaging.RemoteMessage.Notification;
-
 import android.app.Application;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.app.NotificationManagerCompat;
-import android.support.v4.content.LocalBroadcastManager;
+import androidx.core.app.NotificationManagerCompat;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import android.util.Log;
 
 import android.content.Context;
@@ -125,11 +124,11 @@ public class FIRMessagingModule extends ReactContextBaseJavaModule implements Li
 
     @ReactMethod
     public void deleteNotificationChannel(String id, Promise promise) {
-	    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-		    NotificationManager mngr = (NotificationManager) getReactApplicationContext().getSystemService(NOTIFICATION_SERVICE);
-		    mngr.deleteNotificationChannel(id);
-	    }
-	    promise.resolve(null);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationManager mngr = (NotificationManager) getReactApplicationContext().getSystemService(NOTIFICATION_SERVICE);
+            mngr.deleteNotificationChannel(id);
+        }
+        promise.resolve(null);
     }
 
     @ReactMethod
@@ -236,7 +235,7 @@ public class FIRMessagingModule extends ReactContextBaseJavaModule implements Li
         }
         promise.resolve(array);
     }
-	
+
     @ReactMethod
     public void getScheduledLocalNotifications(Promise promise){
         ArrayList<Bundle> bundles = mFIRLocalMessagingHelper.getScheduledLocalNotifications();
@@ -259,8 +258,8 @@ public class FIRMessagingModule extends ReactContextBaseJavaModule implements Li
 
     private void sendEvent(String eventName, Object params) {
         getReactApplicationContext()
-        .getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class)
-        .emit(eventName, params);
+                .getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class)
+                .emit(eventName, params);
     }
 
     private void registerTokenRefreshHandler() {
@@ -280,7 +279,7 @@ public class FIRMessagingModule extends ReactContextBaseJavaModule implements Li
     public void send(String senderId, ReadableMap payload) throws Exception {
         FirebaseMessaging fm = FirebaseMessaging.getInstance();
         RemoteMessage.Builder message = new RemoteMessage.Builder(senderId + "@gcm.googleapis.com")
-        .setMessageId(UUID.randomUUID().toString());
+                .setMessageId(UUID.randomUUID().toString());
 
         ReadableMapKeySetIterator iterator = payload.keySetIterator();
         while (iterator.hasNextKey()) {
