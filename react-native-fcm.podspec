@@ -8,13 +8,13 @@ Pod::Spec.new do |s|
   s.author        = "Libin Lu"
   s.license       = package['license']
   s.requires_arc  = true
-  s.homepage      = "https://github.com/evollu/react-native-fcm"
-  s.source        = { :git => 'https://github.com/evollu/react-native-fcm.git' }
-  s.platform      = :ios, '8.0'
+  s.homepage      = "https://github.com/petalmd/react-native-fcm"
+  s.source        = { :git => 'https://github.com/petalmd/react-native-fcm.git' }
+  s.platform      = :ios, '10.0'
   s.source_files  = "ios/*.{h,m}"
   s.public_header_files = ['ios/RNFIRMessaging.h']
   s.static_framework = true
 
   s.dependency "React"
-  s.dependency "Firebase/Messaging", '6.33.0'
+  s.dependency "Firebase/Messaging", '~> 6.32.0'
 end
