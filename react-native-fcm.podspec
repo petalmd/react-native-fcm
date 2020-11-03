@@ -16,5 +16,5 @@ Pod::Spec.new do |s|
   s.static_framework = true
 
   s.dependency "React"
-  s.dependency "Firebase/Messaging"
+  s.dependency "Firebase/Messaging", '6.33.0'
 end
